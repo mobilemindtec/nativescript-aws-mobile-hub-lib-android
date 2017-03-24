@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    maven {
+        url "http://nexus.mobilemind.com.br/repository/mobile-mind-droid-m2"
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+    }
+
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://nexus.mobilemind.com.br/repository/mobile-mind-droid-m2") {
+                authentication(userName: "deployment", password: "mobilemind@nexus@*\$123")
+            }
+            pom.version = "1.0"
+            pom.artifactId = "MobileMindNSAWSLib"
+            pom.groupId = "br.com.mobilemind.ns.awslib"
+        }
+    }
+}

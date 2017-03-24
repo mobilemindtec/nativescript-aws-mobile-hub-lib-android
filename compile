@@ -1,0 +1,8 @@
+#!/bin/bash
+
+./gradlew exportJar
+
+cp app/release/MobileMindNSAWSLib.jar ~/sources/repositories/nativescript-modules/nativescript-aws-mobile-hub/platforms/android/libs
+
+
+cp app/release/MobileMindNSAWSLib.jar ~/sources/repositories/nativescript-modules/nativescript-aws-mobile-hub/demo/node_modules/nativescript-aws-mobile-hub/platforms/android/libs
